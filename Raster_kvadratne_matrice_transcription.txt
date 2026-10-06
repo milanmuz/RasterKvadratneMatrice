@@ -1,0 +1,308 @@
+' ============================================================================
+' TRANSCRIPTION OF "1987_Raster_kvadratne_matrice_Marjan_Sijanec.pdf"
+' RASTER KVADRATNE MATRICE  by M.SIJANEC 03.08.'87      (GFA BASIC, Atari ST)
+'
+' STATUS: best-effort transcription of a rotated scan (4 pages, sheets 1-4).
+'   [?]      = token/number uncertain, my best reading
+'   [...]    = present on the page but not legible enough to transcribe
+'   {...}    = handwritten pencil note by the author (not part of the program)
+' Check every line against the paper before relying on it.
+' ============================================================================
+
+' [SHEET 1] -----------------------------------------------------------------
+'*****************************************************
+'   RASTER KVADRATNE MATRICE
+'   by M.SIJANEC 03.08.'87
+'*****************************************************
+'
+' ---------------------------------------------------------------- DEFINE
+Deffn X(X1,A,I,Vel)=X1+(A+I*Vel)
+Deffn Y(Y,B,I,Vel)=Y+(B+I*Vel)
+'
+' ---------------------------------------------------------------- INPUT(Kol)
+Ponovo:
+Print At(50,20);
+Input "BROJ ELEMENATA ";Kol
+If Kol<8 Or Kol>22
+  Alert 3,"  INPUT NIJE DOBAR !! | ( birajte od 8 - 22 )",1," OK ",Abc
+  Goto Ponovo
+Endif
+Cls
+'
+' ---------------------------------------------------------------- DIM
+Erase Form()
+Erase Mask()
+Dim Form(Kol,Kol),Mask(Kol,Kol)
+'
+' ---------------------------------------------------------------- KONSTANTE
+A=50
+B=10 [?]
+Vel=10
+'
+' ***************  M A I N  ***************
+'
+' ---------------------------------------------------------------- GRANANJE
+If Kol<10 And Kol>0
+  X1=(A+B)-((Vel-Kol)*Vel)
+  Y1=(Kol*Vel)+B
+Endif
+If Kol>=10 And Kol<23
+  X1=(A+B)+(Vel*(Kol-Vel))
+  Y1=(A*2)+B+(Vel*(Kol-Vel))
+Endif
+'
+' ---------------------------------------------------------------- OUTPUT
+'                                                  {PROCEDURA EKRAN}
+Box A-20,B-20,Int(X1/2)+20,B-50
+Pbox Int(X1/2)+20,B-20,X1,B-50
+Deftext 1,16,0,6
+T$="FORM"
+Text Int(X1/3.2),B-32,T$
+T$="MASK"
+If Kol>10
+  Text Int(X1/1.4),B-32,T$
+Else
+  Text Int(X1/1.47),B-32,T$
+Endif
+Box X1+180,B-20,X1+260,B-50
+T$="FINAL"
+Text X1+200,B-32,T$
+Box X1+280,B-20,X1+360,B-50
+Rbox X1+20,B,X1+60,B+30
+T$=""                         ' [?] one character (arrow glyph) between the quotes
+Text X1+36,B+18,T$
+Rbox X1+20,B+40,X1+60,B+70
+T$=""                         ' [?]
+Text X1+36,B+58,T$
+Rbox X1+20,B+80,X1+60,B+110
+Rbox X1+20,B+120,X1+60,B+150
+T$=""                         ' [?]
+Text X1+36,B+138,T$
+Box X1+24,B-24,X1+126,B-46 [?]
+Box X1+20,B+160,X1+60,B+... [?]
+Pbox X1+80,B+80,X1+160,B+150 [?]
+Pbox X1+160,B+80,X1+260,B+150 [?]
+Pbox X1+280,B+80,X1+360,B+150 [?]
+'
+If Kol>=16
+  Box A-20,Fn Y(Y,B,Kol,Vel),X1,B+200 [?]
+Else
+  Box A-20,Fn Y(Y,B,Kol,Vel),X1,B+200 [?]
+  Box X1-30,Fn Y(Y,B,Kol,Vel)+19,X1-21,Fn Y(Y,B,Kol,Vel)+Vel+20 [?]
+Endif
+T$="DEMO"
+Text Int(X1/3.2),Fn Y(Y,B,Kol,Vel)+47,T$
+'
+Box X1+80,B+150,X1+160,B+160     ' ERASE BOX   (this is the COLOR button)
+Box X1+180,B+150,X1+260,B+160
+Box X1+280,B+150,X1+360,B+160
+Deftext 1,0,0,4
+T$="COLOR"
+Text X1+108,B+157,T$
+T$="ERASE ALL"
+Text X1+192,B+157,T$
+T$="ERASE"
+Text X1+308,B+157,T$
+'
+For I=0 To Kol                    ' grid lines + numbers
+  Line A,Fn Y(Y,B,I,Vel),X1,Fn Y(Y,B,I,Vel)       [?]
+  Line Fn X(X1,A,I,Vel),B,Fn X(X1,A,I,Vel),Y1      [?]
+  Deftext 1,0,0,3
+  T$=Str$(I)
+  If I<=9
+    Text A-20,Fn Y(Y,B,I,Vel)+6,T$
+    Text Fn X(X1,A,I,Vel)+3,B-10,T$
+  Endif
+  If I>=10
+    Text A-25,Fn Y(Y,B,I,Vel)+6,T$
+    Text Fn X(X1,A,I,Vel)+1,5,B-10,T$              [?]
+  Endif
+Next I
+Deftext 1,0,0,13
+'
+{ pencil notes beside this block:  X1+280 / X1+360 / Fn Y(Y,B,Kol,Vel)+20
+  "ROTACIJA" label with  Text X1+80,Fn Y(...)+68  and  Line X1+108,...  /  X1+260
+  boxes - a planned extra button (rotation of the matrix); "ROTACIJE 6.0K" }
+
+' [SHEET 3] -----------------------------------------------------------------
+' ---------------------------------------------------------------- RADNI EKRAN
+'                                                     MOUS rut.
+Repeat
+  If Mousek=1 And Mousex>X1+80 And Mousex<X1+160 And Mousey>B+150 And Mousey<B+160
+    If Boja=0
+      Setcolor 0,0,0
+      Boja=1
+    Else
+      Setcolor 0,1
+      Boja=0
+    Endif
+    Pause 50
+  Endif
+  If Mousek=1 And Mousex>X1 And Mousex<B And Ponasob=0 [?]
+    Pbox X1+280,B-20,X1+360,B-50
+    Ponasob=1
+  Endif
+  If Mousex<=Int(X1/2)+20 And Mousey>B-70 And Mousey<B-20
+    Izbor=1
+    Deftext 1,16,0,6
+    Text X1+42,B-33,T$
+    T$="FORM"
+    Text X1+300,B-32,T$
+    T$="FORM = ON "
+    Text X1+42,B-33,T$
+    Deftext 1,0,0,13
+    Ponasob=1
+    For I=0 To Kol
+      For N=0 To Kol
+        If Mask(I,N)=1
+          Deffill 0,2,8
+          Pbox (X1+300)+I*2,(113+N*2),(X1+302)+I*2,(115+N*2)
+          Deffill 1,2,8
+          Pbox (X1+300)+I*2,(193+N*2),(X1+302)+I*2,(195+N*2)
+        Endif
+        If Form(I,N)=1
+          Deffill 0,2,2
+          Pbox (X1+300)+I*2,(113+N*2),(X1+302)+I*2,(115+N*2)
+          Deffill 1,2,2
+          Pbox (X1+300)+I*2,(193+N*2),(X1+302)+I*2,(195+N*2)
+        Endif
+      Next N
+    Next I
+    [...]
+  Endif
+  If Mousex>=Int(X1/2)+20 And Mousex<=X1 And Mousey>B-70 And Mousey<B-20
+    Izbor=2
+    Deftext 1,16,0,6
+    Text X1+42,B-33,T$
+    T$="MASK"
+    Text X1+300,B-32,T$
+    T$="MASK = ON "
+    Text X1+42,B-33,T$
+    Deftext 1,0,0,13
+    Ponasob=1
+    [... same loops as for FORM, with Form and Mask swapped ...]
+  Endif
+  [...]
+
+' [SHEET 4] -----------------------------------------------------------------
+  [...]
+  For I=0 To Kol
+    For N=0 To Kol
+      If Form(I,N)=1
+        Deffill 0,2,8
+        Pbox (X1+300)+I*2,(113+N*2),(X1+302)+I*2,(115+N*2)
+        Deffill 1,2,2
+        Pbox (X1+300)+I*2,(193+N*2),(X1+302)+I*2,(195+N*2)
+      Endif
+      If Mask(I,N)=1
+        Deffill 1,2,2
+        Pbox (X1+300)+I*2,(113+N*2),(X1+302)+I*2,(115+N*2)
+        Deffill 0,2,8
+        Pbox (X1+300)+I*2,(193+N*2),(X1+302)+I*2,(195+N*2)
+      Endif
+    Next N
+  Next I
+  Deftext 1,0,0,13
+  If Mousex>5 And Mousex<=X1-5 And Mousey<=Fn Y(Y,B,Kol,Vel)-10 [?]
+    X2=(Mousex-50) Div 10
+    Y2=(Mousey-100) Div 10
+    If Ponasob=0
+      T$="START"
+      Deftext 1,16,0,6
+      Text X1+42,B-33,T$
+      Deftext 1,0,0,13
+    Endif
+    If Mousek>0 And Ponasob=1
+      @Mous.rut
+      Deftext 1,16,0,6
+      T$=Str$(X2)+" "+Str$(Y2)+" = "+Str$(...) [?]
+      Text X1+42,B-33,T$
+      Deftext 1,0,0,13
+    Endif
+  Endif
+  ' ---- the four buttons in the column at X1+20 .. X1+60 ----
+  If Mousex>=X1+20 And Mousex<=X1+60 And Mousey>=B And Mousey<=B+30
+    @Shift_levo
+  Endif
+  If Mousex>=X1+20 And Mousex<=X1+60 And Mousey>=B+40 And Mousey<=B+70
+    @Shift_desno
+  Endif
+  If Mousex>=X1+20 And Mousex<=X1+60 And Mousey>=B+80 And Mousey<=B+110
+    @Shift_gore
+  Endif
+  If Mousex>=X1+20 And Mousex<=X1+60 And Mousey>=B+120 And Mousey<=B+150
+    @Shift_dole
+  Endif
+Until Mousey<B-70 Or Inkey$<>"" [?]
+End
+'
+' ----------------------------------------------------------------- RETURN
+' ================================================================= PROCEDURE
+Procedure Mous.rut
+  If Izbor=1
+    If Mousek=1 And Form(X2,Y2)=0
+      Let Form(X2,Y2)=1
+    Else
+      If Mousek=2 And Form(X2,Y2)=1
+        Let Form(X2,Y2)=0
+      Endif
+    Endif
+  Endif
+  If Izbor=2
+    If Mousek=1 And Mask(X2,Y2)=0
+      Let Mask(X2,Y2)=1
+    Else
+      If Mousek=2 And Mask(X2,Y2)=1
+        Let Mask(X2,Y2)=0
+      Endif
+    Endif
+  Endif
+  Gosub Draw
+Return
+'
+' ---------------------------------------------------------------- DRAW
+Procedure Draw
+  If Ponasob=1
+    If Izbor=1
+      If Form(X2,Y2)=1 And Mask(X2,Y2)=0
+        Deffill 1,2,8
+        Pbox 50+X2*10,100+Y2*10,60+X2*10,110+Y2*10
+        Pbox (X1+197)+X2*2,113+Y2*2,(X1+199)+X2*2,115+Y2*2
+        Pbox (X1+300)+X2*2,113+Y2*2,(X1+302)+X2*2,115+Y2*2
+        Deffill 1,2,8
+        Pbox (X1+197)+X2*2,193+Y2*2,(X1+199)+X2*2,195+Y2*2
+        Pbox (X1+300)+X2*2,193+Y2*2,(X1+302)+X2*2,195+Y2*2
+        Color 0
+        Plot (X1+112)+X2,(B+29)+Y2
+        Color 1
+        Plot (X1+112)+X2,(B+109)+Y2
+      Endif
+      [... further If-branches for Form=0/Mask=0, Form=1/Mask=1 with other Deffill
+           patterns (Deffill 0,2,8 / 1,2,2) and Plot (X1+112)+X2,(B+29)+Y2 ... ]
+    Endif
+    If Izbor=2
+      [... mirror image of the Izbor=1 block, Form and Mask exchanged ...]
+    Endif
+    ' marker of the active cell
+    If X2=X_actionspunkt% And Y2=Y_actionspunkt% [?]
+      Graphmode 3
+      Deffill 1,2,8
+      For II=0 To 4
+        Line 53+X_actionspunkt%*10,103+Y_actionspunkt%*10,57+X_actionspunkt%*10,103+Y_actionspunkt%*10 [?]
+      Next II
+      Graphmode 1
+    Endif
+    T$=Space$(Len(T$))
+  Endif
+Return
+'
+' ---------------------------------------------------------------- SHIFT (stubs in this print-out)
+Procedure Shift_levo
+Return
+Procedure Shift_desno
+Return
+Procedure Shift_gore
+Return
+Procedure Shift_dole
+Return
+' ================================================================= END
