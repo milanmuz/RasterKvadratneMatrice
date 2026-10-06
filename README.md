@@ -46,7 +46,6 @@ The program lets you design **small binary raster patterns**: square grids where
 - designing **stencil or screen masks** that are combined with a shape,
 - experimenting with how two dot patterns overlay each other (the "raster" in the title).
 
-If you know what the original was actually used for, please tell me and I will correct this section.
 
 ## 4. How to use it
 
@@ -97,21 +96,14 @@ The thumbnails on the right show FORM and MASK at a small scale all the time. A 
 - **The shift buttons** do nothing in the printed original. Here they work, as a convenience.
 - The pencil-note **ROTACIJA** feature is not implemented.
 
-## 6. Files
 
-| File | Purpose |
-|---|---|
-| `Raster_kvadratne_matrice.html` | The program. Open it in a browser. |
-| `Raster_kvadratne_matrice_transcription.txt` | Best-effort transcription of the original GFA BASIC listing. Uncertain tokens are marked `[?]`, unreadable blocks `[...]`. |
-| `README.md` | This file. |
-
-## 7. Limitations
+## 6. Limitations
 
 - Works with mouse or trackpad. On a touch screen you can set cells (a tap sets a cell to 1) but cannot clear them, because there is no right button.
 - The original saved nothing and printed nothing, and neither does this version. There is no save or export.
-- The transcription of the original is partial. A higher-resolution, upright scan would allow the uncertain parts to be corrected.
+  
 
-## 8. Credits
+## 7. Credits
 
 - **Original program and concept:** M. Sijanec, 1987.
 - **Web reconstruction:** produced with Claude from the scanned listing. All rights to the original design remain with its author.
