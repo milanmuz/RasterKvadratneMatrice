@@ -24,7 +24,7 @@ You paint cells with the mouse, and the program shows the two matrices side by s
 
 ## 2. Where it comes from
 
-This page is not the original program. It is a reconstruction made from a **scanned printout of the original GFA BASIC listing** (file `1987_Raster_kvadratne_matrice_Marjan_Sijanec.pdf`). The listing is signed *RASTER KVADRATNE MATRICE by M.SIJANEC 03.08.'87*.
+This page is not the original program. It is a reconstruction made from a **scanned printout of the original GFA BASIC listing**. The listing is signed *RASTER KVADRATNE MATRICE by M.SIJANEC 03.08.'87*.
 
 What the listing itself shows:
 
