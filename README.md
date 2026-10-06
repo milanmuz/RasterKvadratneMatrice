@@ -9,8 +9,7 @@ https://milanmuz.github.io/RasterKvadratneMatrice/
 | Original author | M. Sijanec (listing signed *by M.SIJANEC 03.08.'87*) |
 | Original date | 3 August 1987 |
 | Original platform | Atari ST, GFA BASIC, 640 x 400 monochrome screen, mouse-driven |
-| This version | Single HTML file, `Raster_kvadratne_matrice.html` |
-| Runs on | Any modern browser (Chrome, Edge, Firefox, Safari), offline, no install |
+
 
 ---
 
